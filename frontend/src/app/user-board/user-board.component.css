@@ -1,0 +1,10 @@
+pre{
+    background-color: white;
+}
+.scrollable-div {
+    width: 500px; /* Set your desired width */
+    height: 300px; /* Set your desired height */
+    overflow: auto; /* Enable scrolling */
+    border: 1px solid #ccc; /* Optional: Add border for visual clarity */
+    padding: 10px; /* Optional: Add padding for better readability */
+}

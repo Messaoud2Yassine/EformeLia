@@ -1,0 +1,65 @@
+<div class="grid h-screen place-items-center">
+    <div class="card w-50 bg-transparent shadow-2xl ...">
+        <br>
+<p class="text-slate-50 hover:text-slate-300" style="text-align: center; font-family: 'Courier New', Courier, monospace;font-size: large;text-shadow: 2px 2px 8px #000000;" > <b> Join the Stack Overflow community</b></p>
+<br>
+        <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit(f)" #f="ngForm" novalidate>
+            <div class="form-group">
+                <input type="text" class="form-control"placeholder="Username" aria-label="Username" name="username" [(ngModel)]="form.username" required
+                    minlength="3" maxlength="20" #username="ngModel" />
+                <div class="alert-danger" *ngIf="username.errors && f.submitted">
+                    <div *ngIf="username.errors['required']">Username is required</div>
+                    <div *ngIf="username.errors['minlength']">
+                        Username must be at least 3 characters
+                    </div>
+                    <div *ngIf="username.errors['maxlength']">
+                        Username must be at most 20 characters
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" name="email"placeholder="Email" aria-label="Email" [(ngModel)]="form.email" required email
+                    #email="ngModel" />
+                <div class="alert-danger" *ngIf="email.errors && f.submitted">
+                    <div *ngIf="email.errors['required']">Email is required</div>
+                    <div *ngIf="email.errors['email']">
+                        Email must be a valid email address
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control"placeholder="Password" aria-label="Password" name="password" [(ngModel)]="form.password" required
+                    minlength="6" #password="ngModel" />
+                <div class="alert-danger" *ngIf="password.errors && f.submitted">
+                    <div *ngIf="password.errors['required']">Password is required</div>
+                    <div *ngIf="password.errors['minlength']">
+                        Password must be at least 6 characters
+                    </div>
+                </div>
+            </div>
+             <div class="form-group">
+                <select id="roles" class="form-control bg-transparent" name="roles" [(ngModel)]="form.roles" #roles="ngModel" required >
+                    
+                    <option value="admin">Admin</option>
+                    <option value="mod">Moderator</option>
+                    <option value="user">User</option> 
+                </select>
+                <div class="alert-danger" *ngIf="roles.errors && f.submitted">
+                    <div *ngIf="roles.errors['required']">Role is required</div>
+                   
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="hover:bg-blue-500 text-gray-600 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded ">Sign Up</button>
+            </div>
+
+            <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                Signup failed!<br />{{ errorMessage }}
+            </div>
+        </form>
+
+        <div class="alert alert-success" *ngIf="isSuccessful">
+            Your registration is successful!
+        </div>
+    </div>
+</div>

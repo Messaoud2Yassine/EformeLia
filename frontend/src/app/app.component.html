@@ -1,0 +1,47 @@
+<div class="bg-gradient-to-t from-indigo-400 via-blue-300 to-transparent ... w-lg md:w-lg lg:w-lg" id="app">
+    <nav class="navbar navbar-expand w-256  transaparent shadow-sm rounded  top-0 left-0 right-0 sticky-xl-top">
+        <a href="#"
+            class="navbar-brand transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-110 hover:duration-300 ...">TESTING</a>
+        <ul class="navbar-nav mr-auto" routerLinkActive="active">
+            <li
+                class="nav-item transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-110 hover:duration-300 ...">
+                <a href="/home" class="nav-link" routerLink="home">Home </a>
+            </li>
+            <li class="nav-item transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-110 hover:duration-300 ..."
+                *ngIf="showAdminBoard">
+                <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+            </li>
+            <li class="nav-item transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-110 hover:duration-300 ..."
+                *ngIf="showModeratorBoard">
+                <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
+            </li>
+            <li
+                class="nav-item transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-110 hover:duration-300 ...">
+                <a href="/user" class="nav-link" *ngIf="isLoggedIn && !showModeratorBoard" routerLink="user">User</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+            <li
+                class="nav-item transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-110 hover:duration-300 ...">
+                <a href="/signup" class="nav-link" routerLink="signup">Sign Up</a>
+            </li>
+            <li
+                class="nav-item transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-110 hover:duration-300 ...">
+                <a href="/signin" class="nav-link" routerLink="signin">Login</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+            <li
+                class="nav-item transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-110 hover:duration-300 ...">
+                <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+            </li>
+            <li
+                class="nav-item transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-110 hover:duration-300 ...">
+                <a href class="nav-link" (click)="logout()">LogOut</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+</div>

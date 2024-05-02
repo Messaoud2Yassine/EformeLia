@@ -1,0 +1,45 @@
+<div class="grid h-screen bg-gray-100">
+  <div class="grid h-screen place-items-center">
+    <div *ngFor="let form of forms" class="mb-4">
+
+      <button (click)="showDetails = !showDetails" class="bg-blue-500 text-white px-4 py-2">{{ form.name }}</button>
+      <div *ngIf="showDetails" class="bg-blue-500 text-black p-4">
+        <form (ngSubmit)="handleSubmit()">
+            <div *ngFor="let tab of form.tabs" class="mb-4">
+            <div *ngFor="let bloc of tab.blocs" class="mb-4">
+              <div *ngFor="let line of bloc.lines" class="mb-4">
+              <div *ngFor="let field of line.inputFields" class="mb-4">
+              
+            <label class="block">{{ field.label }}</label>
+            <input
+              type="{{ field.type }}"
+              [name]="field.name"
+              [placeholder]="field.placeholder"
+              [(ngModel)]="field.inputValues[0].inputValue"
+              class="border border-gray-300 rounded-md px-4 py-2"
+            />
+          </div>
+          <button type="submit" class="bg-blue-500 text-white px-4 py-2">Submit</button>
+        </div>
+      </div>
+    </div>
+        </form>
+      </div>
+      <div class="scrollable-div">
+        <button class="copy-button bg-blue-500 text-white px-4 py-2" onclick="copyToClipboard()">Copy</button>
+        <pre id="content" class="bg-gray-200 p-4">
+          <ng-container *ngFor="let tab of form.tabs">
+            <ng-container *ngFor="let bloc of tab.blocs">
+              <ng-container *ngFor="let line of bloc.lines">
+                <ng-container *ngFor="let field of line.inputFields">
+                  {{ field | json }}
+                </ng-container>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </pre>
+      </div>
+      <button class="generate-button bg-blue-500 text-white px-4 py-2" (click)="generateFlux(form)">Generate File</button>
+    </div>
+  </div>
+</div>
